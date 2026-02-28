@@ -506,13 +506,14 @@ function sunApparentLongitude(jd: number): number {
   let theta = L * 180 / Math.PI + 180;
   theta = mod360(theta);
 
-  // 地心纬度
-  const beta = -B * 180 / Math.PI;
+  // 地心纬度（本模块仅需黄经，纬度保留供未来扩展）
+  void (-B * 180 / Math.PI);
 
   // FK5 修正
   const Lp = theta - 1.397 * T - 0.00031 * T * T;
   const deltaTheta = -0.09033 / 3600;
-  const deltaBeta = (0.03916 / 3600) * (Math.cos(toRad(Lp)) - Math.sin(toRad(Lp)));
+  // deltaBeta 用于纬度修正，本模块仅需黄经
+  void ((0.03916 / 3600) * (Math.cos(toRad(Lp)) - Math.sin(toRad(Lp))));
 
   theta += deltaTheta;
 
@@ -585,7 +586,8 @@ function estimateSolarTermJDE(year: number, termIndex: number): number {
   // 小寒大约在 1 月 5-7 日
   const k = year + (termIndex * 15.2184 + 3) / 365.25;
   // 简单估算：以春分为基准
-  const JDE0 = 2451259.428 + 365.242189623 * (k - 2000);
+  // JDE0 备用：const JDE0 = 2451259.428 + 365.242189623 * (k - 2000);
+  void k; // 保留 k 的计算用于未来精度优化
 
   // 更精确的初始估算
   const baseJD = dateToJD(new Date(Date.UTC(year, 0, 1, 0, 0, 0)));

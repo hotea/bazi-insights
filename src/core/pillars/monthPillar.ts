@@ -21,7 +21,7 @@
  */
 
 import type { HeavenlyStem, EarthlyBranch, Pillar, SolarTerm } from '../../types';
-import { HEAVENLY_STEMS, EARTHLY_BRANCHES } from './yearPillar';
+import { HEAVENLY_STEMS } from './yearPillar';
 
 // ==================== 常量定义 ====================
 
@@ -69,7 +69,8 @@ const YEAR_STEM_TO_MONTH_START: Record<HeavenlyStem, number> = {
  * "节"的索引数组（偶数索引），按月支顺序排列
  * 从寅月(立春)开始到丑月(小寒)
  */
-const JIE_INDICES_ORDERED: number[] = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 0];
+// 备用：按月支顺序排列的"节"索引数组
+// const JIE_INDICES_ORDERED: number[] = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 0];
 
 // ==================== 核心函数 ====================
 

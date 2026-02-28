@@ -119,7 +119,7 @@ function getMonthDays(year: number, month: number): number {
 /**
  * 获取某农历年的总天数（含闰月）
  */
-function getLunarYearDays(year: number): number {
+export function getLunarYearDays(year: number): number {
   let total = 0;
   for (let m = 1; m <= 12; m++) {
     total += getMonthDays(year, m);

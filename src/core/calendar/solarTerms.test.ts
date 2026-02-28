@@ -63,7 +63,7 @@ describe('getSolarTermMoment - 节气精确时刻计算', () => {
 
   it.each(knownTerms2024)(
     '2024年 $name (index=$index) 精度应 < 1 分钟',
-    ({ index, name, expected }) => {
+    ({ index, expected }) => {
       const calculated = getSolarTermMoment(2024, index);
       const diff = diffMinutes(calculated, expected);
       expect(diff).toBeLessThan(1);
@@ -81,7 +81,7 @@ describe('getSolarTermMoment - 节气精确时刻计算', () => {
 
   it.each(knownTerms2023)(
     '2023年 $name (index=$index) 精度应 < 1 分钟',
-    ({ index, name, expected }) => {
+    ({ index, expected }) => {
       const calculated = getSolarTermMoment(2023, index);
       const diff = diffMinutes(calculated, expected);
       expect(diff).toBeLessThan(1);
@@ -100,7 +100,7 @@ describe('getSolarTermMoment - 节气精确时刻计算', () => {
 
   it.each(knownTerms2000)(
     '2000年 $name (index=$index) 精度应 < 2 分钟',
-    ({ index, name, expected }) => {
+    ({ index, expected }) => {
       const calculated = getSolarTermMoment(2000, index);
       const diff = diffMinutes(calculated, expected);
       // 较早年份允许稍大误差（ΔT 估算精度降低）
