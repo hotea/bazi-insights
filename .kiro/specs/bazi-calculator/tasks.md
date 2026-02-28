@@ -96,7 +96,7 @@
     - **Property 10: 月柱推算正确性** — 验证节气分界和五虎遁月映射
     - **Validates: Requirements 12.1, 12.2, 12.3**
 
-  - [-] 4.5 实现日柱推算 `src/core/pillars/dayPillar.ts`
+  - [x] 4.5 实现日柱推算 `src/core/pillars/dayPillar.ts`
     - 实现 `calculateDayPillar(trueSolarTime, earlyRatSplit)` 函数
     - 使用基准日推算法（1900-01-31 甲子日）
     - 支持早子时/晚子时分属不同日柱选项
