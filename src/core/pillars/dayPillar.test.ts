@@ -29,33 +29,33 @@ function bjTime(
 }
 
 describe('calculateDayPillar - 基准日与已知日期验证', () => {
-  it('基准日 1900-01-31 = 甲子日', () => {
+  it('基准日 1900-01-31 = 甲辰日', () => {
     const date = bjTime(1900, 1, 31, 12, 0);
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.branch).toBe('辰');
   });
 
-  it('1900-02-01 = 乙丑日（基准日后一天）', () => {
+  it('1900-02-01 = 乙巳日（基准日后一天）', () => {
     const date = bjTime(1900, 2, 1, 12, 0);
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('乙');
-    expect(pillar.branch).toBe('丑');
+    expect(pillar.branch).toBe('巳');
   });
 
-  it('1900-01-30 = 癸亥日（基准日前一天）', () => {
+  it('1900-01-30 = 癸卯日（基准日前一天）', () => {
     const date = bjTime(1900, 1, 30, 12, 0);
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('癸');
-    expect(pillar.branch).toBe('亥');
+    expect(pillar.branch).toBe('卯');
   });
 
-  // 2024-01-01 = 甲辰日（可通过万年历查证）
-  it('2024-01-01 = 甲辰日', () => {
+  // 2024-01-01 = 甲子日（可通过万年历查证）
+  it('2024-01-01 = 甲子日', () => {
     const date = bjTime(2024, 1, 1, 12, 0);
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('辰');
+    expect(pillar.branch).toBe('子');
   });
 
   // 2000-01-01 = 戊午日
@@ -66,48 +66,48 @@ describe('calculateDayPillar - 基准日与已知日期验证', () => {
     expect(pillar.branch).toBe('午');
   });
 
-  // 1984-02-04 = 甲子日（甲子年甲子日）
-  it('1984-02-04 = 甲子日', () => {
+  // 1984-02-04 = 戊辰日
+  it('1984-02-04 = 戊辰日', () => {
     const date = bjTime(1984, 2, 4, 12, 0);
     const pillar = calculateDayPillar(date, false);
-    expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.stem).toBe('戊');
+    expect(pillar.branch).toBe('辰');
   });
 
   // 六十甲子循环：相隔60天干支相同
-  it('六十甲子循环：基准日 + 60天 = 甲子日', () => {
+  it('六十甲子循环：基准日 + 60天 = 甲辰日', () => {
     const date = bjTime(1900, 4, 1, 12, 0); // 1900-01-31 + 60天 = 1900-04-01
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.branch).toBe('辰');
   });
 
-  // 2023-10-01 = 丙午日
-  it('2023-10-01 = 丙午日', () => {
+  // 2023-10-01 = 壬辰日
+  it('2023-10-01 = 壬辰日', () => {
     const date = bjTime(2023, 10, 1, 12, 0);
     const pillar = calculateDayPillar(date, false);
-    expect(pillar.stem).toBe('丙');
-    expect(pillar.branch).toBe('午');
+    expect(pillar.stem).toBe('壬');
+    expect(pillar.branch).toBe('辰');
   });
 });
 
 describe('calculateDayPillar - 早子时处理', () => {
-  // 使用基准日 1900-01-31（甲子日）测试早子时
-  // 1900-01-31 23:30 → earlyRatSplit=true 时应属于下一日（乙丑日）
+  // 使用基准日 1900-01-31（甲辰日）测试早子时
+  // 1900-01-31 23:30 → earlyRatSplit=true 时应属于下一日（乙巳日）
   it('earlyRatSplit=true, 23:30 → 属于下一日日柱', () => {
     const date = bjTime(1900, 1, 31, 23, 30);
     const pillar = calculateDayPillar(date, true);
-    // 甲子日的下一日是乙丑日
+    // 甲辰日的下一日是乙巳日
     expect(pillar.stem).toBe('乙');
-    expect(pillar.branch).toBe('丑');
+    expect(pillar.branch).toBe('巳');
   });
 
   it('earlyRatSplit=false, 23:30 → 仍属于当日日柱', () => {
     const date = bjTime(1900, 1, 31, 23, 30);
     const pillar = calculateDayPillar(date, false);
-    // 仍然是甲子日
+    // 仍然是甲辰日
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.branch).toBe('辰');
   });
 
   // 23:00 边界测试
@@ -115,14 +115,14 @@ describe('calculateDayPillar - 早子时处理', () => {
     const date = bjTime(1900, 1, 31, 23, 0);
     const pillar = calculateDayPillar(date, true);
     expect(pillar.stem).toBe('乙');
-    expect(pillar.branch).toBe('丑');
+    expect(pillar.branch).toBe('巳');
   });
 
   it('earlyRatSplit=true, 22:59 → 仍属于当日日柱', () => {
     const date = bjTime(1900, 1, 31, 22, 59);
     const pillar = calculateDayPillar(date, true);
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.branch).toBe('辰');
   });
 
   // 23:59 边界测试
@@ -130,14 +130,14 @@ describe('calculateDayPillar - 早子时处理', () => {
     const date = bjTime(1900, 1, 31, 23, 59);
     const pillar = calculateDayPillar(date, true);
     expect(pillar.stem).toBe('乙');
-    expect(pillar.branch).toBe('丑');
+    expect(pillar.branch).toBe('巳');
   });
 
   it('earlyRatSplit=false, 23:59 → 仍属于当日日柱', () => {
     const date = bjTime(1900, 1, 31, 23, 59);
     const pillar = calculateDayPillar(date, false);
     expect(pillar.stem).toBe('甲');
-    expect(pillar.branch).toBe('子');
+    expect(pillar.branch).toBe('辰');
   });
 
   // 使用其他日期测试早子时
@@ -154,15 +154,15 @@ describe('calculateDayPillar - 早子时处理', () => {
 
 describe('calculateDayPillar - 午夜边界测试', () => {
   it('00:00 午夜 → 属于新一天的日柱（无论 earlyRatSplit 设置）', () => {
-    // 1900-02-01 00:00 应该是乙丑日
+    // 1900-02-01 00:00 应该是乙巳日
     const dateA = bjTime(1900, 2, 1, 0, 0);
     const pillarA = calculateDayPillar(dateA, false);
     expect(pillarA.stem).toBe('乙');
-    expect(pillarA.branch).toBe('丑');
+    expect(pillarA.branch).toBe('巳');
 
     const pillarB = calculateDayPillar(dateA, true);
     expect(pillarB.stem).toBe('乙');
-    expect(pillarB.branch).toBe('丑');
+    expect(pillarB.branch).toBe('巳');
   });
 
   it('00:30 → 属于当日日柱（无论 earlyRatSplit 设置）', () => {
