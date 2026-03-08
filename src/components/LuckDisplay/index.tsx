@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBaZiStore } from '../../store';
+import type { DaYunStep, LiuNianEntry } from '../../types';
 
 /**
  * 大运流年展示组件
@@ -41,7 +42,7 @@ const LuckDisplay: React.FC = () => {
       {/* 大运列表 */}
       <h3 className="text-lg font-medium mb-3 text-gray-700 dark:text-gray-200">大运</h3>
       <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
-        {luck.daYun.map((step, i) => (
+        {luck.daYun.map((step: DaYunStep, i: number) => (
           <div key={i} className="flex flex-col items-center bg-indigo-50 dark:bg-indigo-900/30 p-2 rounded-lg border border-indigo-100 dark:border-indigo-800">
             <span className="text-xs text-indigo-400 mb-1">{step.startAge}岁</span>
             <div className="flex flex-col items-center text-lg font-bold text-indigo-800 dark:text-indigo-100">
@@ -55,7 +56,7 @@ const LuckDisplay: React.FC = () => {
       {/* 流年展示（前10年） */}
       <h3 className="text-lg font-medium mt-6 mb-3 text-gray-700 dark:text-gray-200">流年 (前10年)</h3>
       <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
-        {luck.currentLiuNian.map((entry, i) => (
+        {luck.currentLiuNian.map((entry: LiuNianEntry, i: number) => (
           <div key={i} className="flex flex-col items-center bg-gray-50 dark:bg-gray-900 p-2 rounded-lg border border-gray-100 dark:border-gray-700">
             <span className="text-[10px] text-gray-400 mb-1">{entry.year}</span>
             <div className="flex flex-col items-center text-sm font-semibold text-gray-700 dark:text-gray-200">

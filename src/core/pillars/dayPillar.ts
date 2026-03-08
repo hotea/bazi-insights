@@ -54,8 +54,8 @@ export function calculateDayPillar(trueSolarTime: Date, earlyRatSplit: boolean):
     daysDiff += 1;
   }
 
-  // 计算六十甲子序号（确保为非负数）
-  const index = ((daysDiff % 60) + 60) % 60;
+  // 计算六十甲子序号（1900-01-31 为甲辰日，序号为 40）
+  const index = (((daysDiff + 40) % 60) + 60) % 60;
 
   // 天干序号 = index % 10，地支序号 = index % 12
   const stemIndex = index % 10;
