@@ -14,20 +14,23 @@ const InputPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">出生信息输入</h2>
+    <div className="glass-card p-8 rounded-3xl">
+      <h2 className="text-2xl font-bold mb-8 text-slate-800 dark:text-slate-100 flex items-center gap-2">
+        <span className="w-2 h-8 bg-indigo-500 rounded-full"></span>
+        出生信息输入
+      </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* 日期选择 */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-600 dark:text-gray-400">出生日期</label>
-          <div className="flex gap-2">
+        <div className="flex flex-col gap-2 md:col-span-2">
+          <label className="text-sm font-bold text-slate-500 dark:text-slate-400 ml-1">出生日期</label>
+          <div className="flex gap-3">
             <input
               type="number"
               name="year"
               value={input.year}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+              className="glass-input w-full px-4 py-3 rounded-xl text-center"
               placeholder="年"
             />
             <input
@@ -35,7 +38,7 @@ const InputPanel: React.FC = () => {
               name="month"
               value={input.month}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+              className="glass-input w-full px-4 py-3 rounded-xl text-center"
               placeholder="月"
             />
             <input
@@ -43,7 +46,7 @@ const InputPanel: React.FC = () => {
               name="day"
               value={input.day}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+              className="glass-input w-full px-4 py-3 rounded-xl text-center"
               placeholder="日"
             />
           </div>
@@ -51,14 +54,14 @@ const InputPanel: React.FC = () => {
 
         {/* 时间选择 */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-600 dark:text-gray-400">出生时间</label>
-          <div className="flex gap-2">
+          <label className="text-sm font-bold text-slate-500 dark:text-slate-400 ml-1">出生时间</label>
+          <div className="flex gap-3">
             <input
               type="number"
               name="hour"
               value={input.hour}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+              className="glass-input w-full px-4 py-3 rounded-xl text-center"
               placeholder="时"
             />
             <input
@@ -66,7 +69,7 @@ const InputPanel: React.FC = () => {
               name="minute"
               value={input.minute}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+              className="glass-input w-full px-4 py-3 rounded-xl text-center"
               placeholder="分"
             />
           </div>
@@ -74,12 +77,12 @@ const InputPanel: React.FC = () => {
 
         {/* 性别选择 */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-600 dark:text-gray-400">性别</label>
+          <label className="text-sm font-bold text-slate-500 dark:text-slate-400 ml-1">性别</label>
           <select
             name="gender"
             value={input.gender}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+            className="glass-input w-full px-4 py-3 rounded-xl appearance-none cursor-pointer"
           >
             <option value="male">男</option>
             <option value="female">女</option>
@@ -87,22 +90,22 @@ const InputPanel: React.FC = () => {
         </div>
 
         {/* 经度输入 */}
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-gray-600 dark:text-gray-400">出生地经度</label>
+        <div className="flex flex-col gap-2 md:col-span-2 lg:col-span-1">
+          <label className="text-sm font-bold text-slate-500 dark:text-slate-400 ml-1">出生地经度</label>
           <input
             type="number"
             name="longitude"
             value={input.longitude}
             onChange={handleChange}
             step="0.1"
-            className="w-full px-3 py-2 border rounded-md dark:bg-gray-900 dark:border-gray-600"
+            className="glass-input w-full px-4 py-3 rounded-xl"
           />
         </div>
       </div>
 
       <button
         onClick={() => useBaZiStore.getState().calculate()}
-        className="mt-6 w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition-colors"
+        className="mt-10 w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-lg shadow-lg shadow-indigo-500/30 transition-all active:scale-[0.98]"
       >
         立即排盘
       </button>
