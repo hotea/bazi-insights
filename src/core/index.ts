@@ -7,7 +7,7 @@ import { calculateTrueSolarTime } from './calendar/trueSolarTime';
 import { getAllSolarTerms } from './calendar/solarTerms';
 import { solarToLunar } from './calendar/lunarCalendar';
 import { calculateFourPillars } from './pillars';
-import { calculateWuXingCount, calculateWuXingScore, calculateDayMasterStrength } from './wuxing';
+import { calculateWuXingCount, calculateWuXingScore, calculateDayMasterStrength, generateWuXingAnalysis } from './wuxing';
 import { isLuckForward, calculateDaYunStartAge, calculateDaYunSteps, calculateLiuNian, calculatePalaces } from './luck';
 
 /**
@@ -32,6 +32,7 @@ export function calculateBaZi(input: BaZiInput): BaZiResult {
   const wuxingCount = calculateWuXingCount(fourPillars);
   const wuxingScore = calculateWuXingScore(fourPillars);
   const strength = calculateDayMasterStrength(fourPillars, wuxingScore);
+  const wuxingAnalysis = generateWuXingAnalysis(fourPillars, wuxingScore, strength);
 
   // 5. 大运流年
   const isForward = isLuckForward(fourPillars.year.stem, gender);
@@ -76,6 +77,7 @@ export function calculateBaZi(input: BaZiInput): BaZiResult {
       count: wuxingCount,
       score: wuxingScore,
       dayMasterStrength: strength,
+      analysis: wuxingAnalysis,
     },
   };
 }
