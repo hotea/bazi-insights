@@ -19,13 +19,6 @@ const WuXingChart: React.FC = () => {
     { key: 'water', name: '水', color: 'bg-blue-500', labelColor: 'text-blue-600', shadow: 'shadow-blue-500/30' },
   ] as const;
 
-  const wuxingNameMap = {
-    'wood': '木',
-    'fire': '火',
-    'earth': '土',
-    'metal': '金',
-    'water': '水'
-  } as const;
 
   return (
     <div className="glass-card p-10 rounded-[2.5rem] flex flex-col h-full">
