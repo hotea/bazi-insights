@@ -173,6 +173,25 @@ export interface DayMasterStrength {
   analysis: string;
 }
 
+/** 五行深度解读 */
+export interface WuXingAnalysis {
+  /** 整体平衡性描述 */
+  overview: string;
+  /** 五行各元素的含义解析 */
+  details: Record<WuXing, {
+    /** 状态：过旺 | 强 | 中和 | 弱 | 极弱 */
+    status: string;
+    /** 性格特征解读 */
+    personality: string;
+    /** 健康建议 */
+    health: string;
+  }>;
+  /** 喜用神解析 */
+  favorableElements: string;
+  /** 忌神解析 */
+  unfavorableElements: string;
+}
+
 // -------------------- 输入/输出数据结构 --------------------
 
 /** 用户输入 */
@@ -230,6 +249,7 @@ export interface BaZiResult {
     count: WuXingCount;
     score: WuXingScore;
     dayMasterStrength: DayMasterStrength;
+      analysis: WuXingAnalysis;
   };
 }
 
